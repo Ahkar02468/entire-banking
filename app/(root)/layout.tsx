@@ -1,16 +1,25 @@
-
+import MobileNav from "@/components/MobileNav";
+import SideBar from "@/components/SideBar";
+import Image from "next/image";
 
 export default function RootLayout({
-     children,
+  children,
 }: Readonly<{
-     children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-     return (
-          <html lang="en">
-               <body>
-                    SIDEBAR
-                    {children}
-               </body>
-          </html>
-     );
+  const loggedIn = { firstName: "Ahkar", lastName: "Shwe Baw" };
+  return (
+    <main className="flex h-screen w-full font-inter">
+      <SideBar user={loggedIn} />
+      <div className="flex size-full flex-col">
+        <div className="root-layout">
+          <Image src="/icons/logo.svg" alt="Logo" width={30} height={30} />
+          <div>
+            <MobileNav user={loggedIn} />
+          </div>
+        </div>
+        {children}
+      </div>
+    </main>
+  );
 }
